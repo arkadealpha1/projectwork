@@ -13,8 +13,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get the user ID from the session
-$user_id = $_SESSION['user_id'] ?? null;
+// Get the user ID from php ID
+$user_id = $_GET['id'] ?? null;
 
 if (!$user_id) {
     die("User ID is missing.");

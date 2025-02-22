@@ -1,0 +1,114 @@
+/* Post View Container */
+.post-view-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+/* Left Section (Image and Uploaded By) */
+.post-left {
+    flex: 1;
+}
+
+.post-left img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.uploaded-by {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.uploaded-by .profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.uploaded-by .username {
+    font-size: 24px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+
+}
+
+.uploaded-by .username:hover {
+    text-decoration: underline;
+}
+
+/* Right Section (Post Details and Buttons) */
+.post-right {
+    flex: 1;
+}
+
+.post-right h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.post-right .product-name {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.post-right .price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.post-right .review-blog {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.post-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.post-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.post-buttons .connect-button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.post-buttons .connect-button:hover {
+    background-color: #0056b3;
+}
+
+.post-buttons .add-to-cart-button {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.post-buttons .add-to-cart-button:hover {
+    background-color: #218838;
+}
+
+.post-buttons .favorite-button {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.post-buttons .favorite-button:hover {
+    background-color: #e0a800;
+}

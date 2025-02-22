@@ -21,27 +21,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $review_blog = $_POST['review_blog'];
     $price = $_POST['price'];
     $user_id = $_SESSION['user_id']; // Assuming the user is logged in and their ID is stored in the session
+    $rating = $_POST['rating'];
 
     // Handle file upload
     if (isset($_FILES['media']) && $_FILES['media']['error'] === UPLOAD_ERR_OK) {
-        $upload_dir = 'C:\xampp\htdocs\projectwork\uploads'; // Directory to store uploaded files
-        $file_name = basename($_FILES['media']['name']);
-        $file_path = $upload_dir . $file_name;
+        $upload_dir = __DIR__ . '/../uploads/'; // Relative path to the uploads folder
 
+        // Check if the uploads directory exists
+        if (!is_dir($upload_dir)) {
+            // Create the uploads directory if it doesn't exist
+            if (!mkdir($upload_dir, 0755, true)) {
+                die("Failed to create uploads directory.");
+            }
+        }
+
+        $file_name = basename($_FILES['media']['name']);
+        $file_path = $upload_dir . $file_name; // Absolute server path for saving the file
+        $file_url = 'http://localhost/projectwork/uploads/' . $file_name; // Absolute URL for the database
         // Move the uploaded file to the uploads directory
         if (move_uploaded_file($_FILES['media']['tmp_name'], $file_path)) {
             // Insert product into the `product` table
-            $sql = "INSERT INTO product (product_name, review_blog, media, price) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO product (product_name, review_blog, media, price, rating) VALUES (?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssd", $product_name, $review_blog, $file_path, $price);
+            $stmt->bind_param("sssdi", $product_name, $review_blog, $file_url, $price, $rating);
 
             if ($stmt->execute()) {
                 $product_id = $stmt->insert_id; // Get the auto-generated product_id
 
                 // Insert post into the `post` table
-                $sql = "INSERT INTO post (product_id, title, media, review_blog, id) VALUES (?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO post (product_id, title, media, review_blog, id, rating) VALUES (?, ?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("isssi", $product_id, $title, $file_path, $review_blog, $user_id);
+                $stmt->bind_param("isssii", $product_id, $title, $file_url, $review_blog, $user_id, $rating);
 
                 if ($stmt->execute()) {
                     echo "<p>Post created successfully!</p>";
@@ -139,6 +149,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group">
                     <label for="price">Product Price</label>
                     <input type="number" id="price" name="price" step="0.01" required>
+                </div>
+
+                <!-- Rating -->
+                <div class="form-group">
+                    <label for="rating">Rating</label>
+                    <input type="number" id="rating" name="rating" min="1" max="5" required>
                 </div>
 
                 <!-- Submit Button -->
