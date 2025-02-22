@@ -1,0 +1,95 @@
+/* Create Post Container */
+.create-post-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.create-post-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Form Layout */
+form {
+    display: flex;
+    gap: 20px;
+}
+
+.form-left, .form-right {
+    flex: 1;
+}
+
+/* Media Upload */
+.media-upload {
+    margin-bottom: 20px;
+}
+
+.media-upload label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.media-upload input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.preview-box {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.preview-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}

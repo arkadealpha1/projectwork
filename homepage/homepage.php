@@ -1,3 +1,21 @@
+<?php
+session_start();
+
+// Database connection
+$host = 'localhost';
+$db = 'projectwork';
+$user = 'root';
+$pass = '';
+$conn = new mysqli($host, $user, $pass, $db);
+
+if ($conn->connect_error) {
+    echo "Connection failed: " . $conn->connect_error;
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,10 +45,14 @@
                 <i class="fas fa-comment-dots"></i>
             </button>
             <button class="nav-button" id="create-post-button">
-                <i class="fas fa-plus"></i>
+                <a href="../user_post/user_post.php">
+                <i class="fas fa-plus"></i></a>
             </button>
             <button class="nav-button" id="user-page-button">
-                <i class="fas fa-user"></i>
+                <a href="../account_view/account_view.php">
+                <!-- <i class="fas fa-user"></i> -->
+                <img class="profile-img" src="<?php if(!empty($user['Profile_photo'])){ echo $user['Profile_photo'];}else{ echo '../images/default_profile_pic.jpg';} ?>" alt="profile photo" >
+                </a>
             </button>
             <button class="nav-button" id="cart-button">
                 <i class="fas fa-shopping-cart"></i>
@@ -41,10 +63,10 @@
     <!-- Photo Grid -->
     <div class="photo-grid">
         
-        <div class="photo-container">
-            <a href="#">
-                <img src="https://i.pinimg.com/236x/05/91/a0/0591a0af70cb6a70fee56b95ce5e2091.jpg" alt="Product Image">
-            </a>
+            <div class="photo-container">
+                <a href="..//post_view.php">
+                    <img src="https://i.pinimg.com/236x/05/91/a0/0591a0af70cb6a70fee56b95ce5e2091.jpg" alt="Product Image">
+                </a>
             <!-- Hover Overlay -->
             <div class="overlay">
                 <h3 class="product-name">The Weeknd - Starboy (2016)</h3>
@@ -52,7 +74,7 @@
                     <span class="stars">★★★★☆</span> <!-- 4 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -69,7 +91,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -86,7 +108,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -103,7 +125,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -120,7 +142,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -137,7 +159,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -154,7 +176,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -171,7 +193,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -188,7 +210,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -205,7 +227,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -221,7 +243,7 @@
                     <span class="stars">★★★★☆</span> 
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -237,7 +259,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -253,7 +275,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -269,7 +291,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -285,7 +307,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -301,7 +323,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -317,7 +339,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -333,7 +355,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -349,7 +371,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>
@@ -365,7 +387,7 @@
                     <span class="stars">★★★☆☆</span> <!-- 3 out of 5 stars -->
                 </div>
             <div class="buttons">
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                 <button class="star">★</button>
             </div>
             </div>

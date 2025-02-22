@@ -46,10 +46,11 @@ if(isset($_POST['logform'])){
     $sql="SELECT * FROM users WHERE username='$username' and password='$password'";
     $result=$conn->query($sql);
     if($result->num_rows>0){
+        // echo $result;
         session_start();
         $row=$result->fetch_assoc();
-        $_SESSION['username']=$row['username'];
-        header("Location: homepage.php");
+        $_SESSION['user_id']=$row['id'];
+        header("Location: homepage/homepage.php");
         exit();
 
         }
