@@ -1,0 +1,123 @@
+/* Photo Grid Styles */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Creates flexible columns */
+    gap: 15px; /* Spacing between items */
+    padding: 20px;
+}
+
+.photo-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    aspect-ratio: auto; /* Allows the container to resize based on the image aspect ratio */
+}
+
+.photo-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.photo-container img {
+    width: 100%;
+    height: auto; /* Ensures images maintain their aspect ratio */
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    display: block;
+    border-radius: 10px;
+}
+
+/* Masonry Layout */
+.photo-grid {
+    grid-row: span calc(var(--photo-height) / 10); /* Adjust span based on image height */
+    column-count: 3; /* Number of columns */
+    column-gap: 15px; /* Spacing between columns */
+}
+
+.photo-container {
+    break-inside: avoid; /* Prevents items from breaking across columns */
+    margin-bottom: 15px; /* Spacing between items */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust for smaller screens */
+        column-count: 2; /*Two columns for smaller screens*/
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-grid {
+        column-count: 1; /* Single column for mobile screens */
+    }
+}
+
+/* Hover Overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
+    border-radius: 10px;
+}
+
+.photo-container:hover .overlay {
+    opacity: 0.8; /* Show on hover */
+}
+
+/* Product Name */
+.product-name {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Rating */
+.rating {
+    font-size: 20px;
+    color: #ffd700; /* Gold color for stars */
+    margin-bottom: 15px;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.add-to-cart, .star {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3;
+}
+
+.star {
+    background-color: #ffd700;
+    color: #000;
+}
+
+.star:hover {
+    background-color: #ffc107;
+}
