@@ -1,0 +1,129 @@
+.delivery-details {
+    /* max-width: 500px; */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.delivery-details h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 97%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+.payment-modes {
+    /* max-width: 500px; */
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.payment-modes h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.payment-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-btn {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.payment-btn i {
+    margin-right: 10px;
+}
+
+.payment-btn:hover {
+    background-color: #0056b3;
+}
+
+.card-form {
+    margin-top: 20px;
+}
+
+.card-icons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.card-icons i {
+    font-size: 24px;
+    color: #555;
+}
+
+.proceed-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.proceed-btn:hover {
+    background-color: #218838;
+}
+.container{
+    display: flex;
+}
+.checkout-form{
+    flex-basis: 60%;
+}
+
+/* Hide payment mode section initially
+.payment-modes {
+    display: none;
+}
+
+
+.payment-modes.show-payment {
+    display: block;
+} */

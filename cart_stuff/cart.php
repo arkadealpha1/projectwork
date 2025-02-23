@@ -32,6 +32,7 @@ if ($result->num_rows === 0) {
 } else {
     $cart = $result->fetch_assoc();
     $cart_id = $cart['cart_id'];
+    $_SESSION['cart_id ']= $cart['cart_id'];
 
     // Fetch the cart items
     $sql = "SELECT cart_items.*, product.product_name, product.media, product.price 
@@ -110,7 +111,7 @@ $conn->close();
                             </div>
                             <div class="item-details">
                                 <h3 class="item-name"><?php echo htmlspecialchars($item['product_name']); ?></h3>
-                                <p class="item-price">$<?php echo htmlspecialchars($item['price']); ?></p>
+                                <p class="item-price">₹<?php echo htmlspecialchars($item['price']); ?></p>
                                 <!-- <div class="item-quantity">
                                     <button class="quantity-btn" onclick="updateQuantity(<?php echo $item['cart_item_id']; ?>, -1)">-</button>
                                     <input type="number" class="quantity-input" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1">
@@ -127,12 +128,14 @@ $conn->close();
             <div class="order-summary">
                 <h2>Order Summary</h2>
                 <div class="summary-details">
-                    <p>Subtotal: <span class="subtotal">$<?php echo calculateSubtotal($cart_items); ?></span></p>
-                    <p>Shipping: <span class="shipping">$10.00</span></p>
+                    <p>Subtotal: <span class="subtotal">₹<?php echo calculateSubtotal($cart_items); ?></span></p>
+                    <p>Shipping: <span class="shipping">₹100.00</span></p>
                     <hr>
-                    <p>Total: <span class="total">$<?php echo calculateTotal($cart_items); ?></span></p>
+                    <p>Total: <span class="total">₹<?php echo calculateTotal($cart_items); ?></span></p>
                 </div>
+                <a href="../checkout_page/checkout.php">
                 <button class="checkout-btn">Proceed to Checkout</button>
+                </a>
             </div>
         </div>
     </div>
@@ -197,7 +200,7 @@ $conn->close();
         function updateTotals() {
             let subtotal = 0;
             document.querySelectorAll('.cart-item').forEach(item => {
-                const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
+                const price = parseFloat(item.querySelector('.item-price').textContent.replace('₹', ''));
                 // const quantity = parseInt(item.querySelector('.quantity-input').value);
                 subtotal += price;
             });
@@ -205,8 +208,8 @@ $conn->close();
             const shipping = 10.00;
             const total = subtotal + shipping;
 
-            document.querySelector('.subtotal').textContent = `$${subtotal.toFixed(2)}`;
-            document.querySelector('.total').textContent = `$${total.toFixed(2)}`;
+            document.querySelector('.subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+            document.querySelector('.total').textContent = `₹${total.toFixed(2)}`;
         }
 
         // Initial call to set totals

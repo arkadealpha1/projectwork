@@ -41,6 +41,7 @@ if (isset($_SESSION['user_id'])) {
         // Use existing cart
         $cart = $result->fetch_assoc();
         $cartId = $cart['cart_id'];
+        $_SESSION['cart_id ']= $cart['cart_id'];
     }
 
     // Add or update the item in the cart
@@ -55,6 +56,8 @@ if (isset($_SESSION['user_id'])) {
     } else {
         echo json_encode(["status" => "error", "message" => "Error: " . $stmt->error]);
     }
+
+
 } else {
     // Session logic for guests
     if (!isset($_SESSION['cart'])) {

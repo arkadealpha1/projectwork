@@ -93,7 +93,7 @@ $conn->close();
             <!-- Post Details -->
             <h1><?php echo htmlspecialchars($post['title']); ?></h1>
             <p class="product-name"><?php echo htmlspecialchars($post['product_name']); ?></p>
-            <p class="price">Price: $<?php echo htmlspecialchars($post['price']); ?></p>
+            <p class="price">Price: ₹<?php echo htmlspecialchars($post['price']); ?></p>
             <p class="review-blog"><?php echo htmlspecialchars($post['review_blog']); ?></p>
 
             <!-- Buttons -->

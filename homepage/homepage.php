@@ -96,7 +96,7 @@ $conn->close();
                         </div>
                         <div class="post-details">
                             <p>Posted by: <?php echo htmlspecialchars($post['username']); ?></p>
-                            <p>Price: $<?php echo htmlspecialchars($post['price']); ?></p>
+                            <p>Price: ₹<?php echo htmlspecialchars($post['price']); ?></p>
                         </div>
                     </div>
                 </div>
