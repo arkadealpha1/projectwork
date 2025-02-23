@@ -13,8 +13,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get the user ID from the session
-$user_id = $_SESSION['user_id'] ?? null;
+// Get the user ID from php ID
+$user_id = $_GET['id'] ?? null;
 
 if (!$user_id) {
     die("User ID is missing.");
@@ -84,6 +84,8 @@ $conn->close();
             <button class="nav-button" id="user-page-button">
                 <a href="#">
                 <!-- <a href="../user_account/user_account.html"> -->
+                
+                <!-- Fetch logged-in user's profile photo from session -->
                 <img class="profile-img" src="<?php echo !empty($_SESSION['profile_photo']) ? $_SESSION['profile_photo'] : '../images/default_profile_pic.jpg'; ?>" alt="profile photo">
                 </a>
             </button>
@@ -102,30 +104,13 @@ $conn->close();
             <h1><?php echo htmlspecialchars($user['username']); ?></h1>
             <p><?php echo htmlspecialchars($user['name']); ?></p>
         </div>
-
-        
-
     </div>
 
-    <div class="user-actions">
-            <button class="edit-user" 
-            onclick="window.location.href='edit_profile.php'" 
-            style=" background-color: orange;
-                    color: black;
-                    padding: 10px 20px;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-size: 16px;
-                    transition: background-color 0.3s ease;">
-                Edit User
-            </button>
-        </div>
     <!-- User Actions -->
-    <!-- <div class="user-actions">
+    <div class="user-actions">
         <button class="favorite-button">★ Favorite</button>
         <button class="connect-button">Connect</button>
-    </div> -->
+    </div>
 
     <!-- User Posts Gallery -->
     <div class="user-posts">

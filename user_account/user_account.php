@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Get the user ID from php ID
-$user_id = $_GET['id'] ?? null;
+$user_id = $_SESSION['id'] ?? null;
 
 if (!$user_id) {
     die("User ID is missing.");
@@ -102,13 +102,17 @@ $conn->close();
             <h1><?php echo htmlspecialchars($user['username']); ?></h1>
             <p><?php echo htmlspecialchars($user['name']); ?></p>
         </div>
+        <div class="user-actions">
+            <button class="edit-user">Edit User</button>
+        </div>
     </div>
 
     <!-- User Actions -->
-    <div class="user-actions">
+    <!-- <div class="user-actions">
         <button class="favorite-button">★ Favorite</button>
         <button class="connect-button">Connect</button>
-    </div>
+    </div> -->
+
 
     <!-- User Posts Gallery -->
     <div class="user-posts">

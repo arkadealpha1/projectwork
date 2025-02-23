@@ -43,6 +43,7 @@
     transition: background-color 0.3s ease;
 }
 
+
 .favorite-button {
     background-color: #ffd700;
     color: #000;
@@ -56,6 +57,7 @@
     background-color: #007bff;
     color: #fff;
 }
+
 
 .connect-button:hover {
     background-color: #0056b3;

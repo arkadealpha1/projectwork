@@ -12,6 +12,13 @@ if ($conn->connect_error) {
     echo "Connection failed: " . $conn->connect_error;
 }
 
+// Get the user ID from the session
+$user_id = $_SESSION['user_id'] ?? null;
+
+if (!$user_id) {
+    die("User not logged in.");
+}
+
 // Fetch all posts with product and user details
 $sql = "SELECT post.*, post.title, post.review_blog, product.price, users.username 
         FROM post 
@@ -67,7 +74,9 @@ $conn->close();
             <button class="nav-button" id="user-page-button">
                 <a href="../account_view/account_view.php">
                 <!-- <i class="fas fa-user"></i> -->
-                <img class="profile-img" src="<?php if(!empty($user['Profile_photo'])){ echo $user['Profile_photo'];}else{ echo '../images/default_profile_pic.jpg';} ?>" alt="profile photo" >
+                
+                <!-- Fetch logged-in user's profile photo from session -->
+                <img class="profile-img" src="<?php echo !empty($_SESSION['profile_photo']) ? $_SESSION['profile_photo'] : '../images/default_profile_pic.jpg'; ?>" alt="profile photo">
                 </a>
             </button>
             <button class="nav-button" id="cart-button">
