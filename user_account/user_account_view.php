@@ -109,7 +109,9 @@ $conn->close();
     <!-- User Actions -->
     <div class="user-actions">
         <button class="favorite-button">★ Favorite</button>
-        <button class="connect-button">Connect</button>
+        <button class="connect-button" onclick="window.location.href='chat.php?user2_id=<?php echo $user['id']; ?>'">
+            Connect
+        </button>
     </div>
 
     <!-- User Posts Gallery -->

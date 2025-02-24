@@ -98,14 +98,16 @@ $conn->close();
 
             <!-- Buttons -->
             <div class="post-buttons">
-                <button class="connect-button">Connect</button>
-                <button class="add-to-cart-button" 
+            <button class="connect-button" onclick="window.location.href='chat.php?user2_id=<?php echo $post['id']; ?>'">
+                Connect
+            </button>
+            <button class="add-to-cart-button" 
             data-product-id="<?php echo htmlspecialchars($post['product_id']); ?>" 
             data-product-name="<?php echo htmlspecialchars($post['product_name']); ?>" 
             data-price="<?php echo htmlspecialchars($post['price']); ?>">
-        Add to Cart
-    </button>
-                <button class="favorite-button">★ Favorite</button>
+                Add to Cart
+            </button>
+            <button class="favorite-button">★ Favorite</button>
             </div>
 
             <!-- Display the user who uploaded the post -->

@@ -65,7 +65,8 @@ $conn->close();
         </div>
         <div class="nav-buttons">
             <button class="nav-button" id="chat-button">
-                <i class="fas fa-comment-dots"></i>
+                <a href="../chat_connect/chat.php">
+                <i class="fas fa-comment-dots"></i></a>
             </button>
             <button class="nav-button" id="create-post-button">
                 <a href="../user_post/user_post.php">
@@ -76,7 +77,7 @@ $conn->close();
                 <!-- <i class="fas fa-user"></i> -->
                 
                 <!-- Fetch logged-in user's profile photo from session -->
-                <img class="profile-img" src="<?php echo !empty($_SESSION['profile_photo']) ? $_SESSION['profile_photo'] : '../images/default_profile_pic.jpg'; ?>" alt="profile photo">
+                <img class="profile-img" src="<?php echo !empty($_SESSION['Profile_photo']) ? $_SESSION['profile_photo'] : '../images/default_profile_pic.jpg'; ?>" alt="profile photo">
                 </a>
             </button>
             <button class="nav-button" id="cart-button">
