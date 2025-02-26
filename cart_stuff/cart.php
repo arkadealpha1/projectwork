@@ -205,7 +205,7 @@ $conn->close();
                 subtotal += price;
             });
 
-            const shipping = 10.00;
+            const shipping = 100.00;
             const total = subtotal + shipping;
 
             document.querySelector('.subtotal').textContent = `₹${subtotal.toFixed(2)}`;

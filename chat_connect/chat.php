@@ -45,7 +45,6 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CATAMOG - Chat</title>
     <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/photo-grid.css">
     <link rel="stylesheet" href="../chat_connect/chat.css">
     <link rel="stylesheet" href="../homepage/background.css">
     
@@ -122,7 +121,7 @@ $conn->close();
             const user2_id = urlParams.get('user2_id');
 
             // Fetch and display connected users
-            fetch('connections.php')
+            fetch('fetch_connections.php')
                 .then(response => response.json())
                 .then(data => {
                     const connectedUsers = document.getElementById('connected-users');
@@ -138,7 +137,7 @@ $conn->close();
 
             // Load chat history for the selected user
             function loadChat(user2_id) {
-                fetch(`fetch_messages.php?user2_id=${user2_id}`)
+                fetch(`fetch_message.php?user2_id=${user2_id}`)
                     .then(response => response.json())
                     .then(data => {
                         chatMessages.innerHTML = '';

@@ -34,6 +34,8 @@ if ($result->num_rows > 0) {
     }
 }
 
+
+
 $conn->close();
 ?>
 
@@ -57,11 +59,11 @@ $conn->close();
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <a href="#"><img src="../images/logo.png"></a>
+            <a href="../homepage/homepage.php"><img src="../images/logo.png"></a>
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Search for products...">
-            <button><i class="fas fa-search"></i></button>
+            <input type="text" id="search-input" placeholder="Search for products...">
+            <button id="search-button"><i class="fas fa-search"></i></button>
         </div>
         <div class="nav-buttons">
             <button class="nav-button" id="chat-button">

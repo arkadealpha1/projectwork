@@ -293,6 +293,15 @@ $conn->close();
 
             const rzp = new Razorpay(options);
             rzp.open();
+
+            rzp.on('payment.failed', function (response) {
+                alert('Payment failed. Please try again.');
+            });
+
+            // handler: function (response) {
+            //     window.location.href = 'order_confirmation.php?payment_id=' + response.razorpay_payment_id;
+            // }
+
         });
 
         // Handle UPI/QR Payment

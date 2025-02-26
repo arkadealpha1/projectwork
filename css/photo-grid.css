@@ -53,6 +53,18 @@
     }
 }
 
+
+/* Ensure the anchor tag only affects the title text */
+.product-name-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit the color from the parent */
+    display: inline-block; /* Ensure the anchor tag only wraps the title */
+}
+
+.product-name-link:hover {
+    color: #1abc9c; /* Change color on hover */
+}
+
 /* Hover Overlay */
 .overlay {
     position: absolute;
@@ -90,7 +102,7 @@
 }
 
 /* Buttons */
-.buttons {
+/* .buttons {
     display: flex;
     gap: 10px;
 }
@@ -102,9 +114,9 @@
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s ease;
-}
+} */
 
-.add-to-cart {
+/* .add-to-cart {
     background-color: #007bff;
     color: #fff;
 }
@@ -120,4 +132,4 @@
 
 .star:hover {
     background-color: #ffc107;
-}
+} */
