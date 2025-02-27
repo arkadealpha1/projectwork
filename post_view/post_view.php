@@ -35,6 +35,19 @@ if ($result->num_rows === 0) {
 
 $post = $result->fetch_assoc();
 $stmt->close();
+
+// Handle favorite post
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['favorite_post'])) {
+    $user_id = $_SESSION['user_id'];
+    $post_id = $_POST['post_id'];
+
+    $sql = "INSERT INTO favorite_posts (user_id, post_id) VALUES (?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $user_id, $post_id);
+    $stmt->execute();
+    $stmt->close();
+}
+
 $conn->close();
 ?>
 
@@ -136,7 +149,24 @@ $conn->close();
     document.querySelector('.favorite-button').addEventListener('click', function() {
         alert('Added to favorites!');
         // Add your favorite logic here
+        const postId = <?php echo $post['post_id']; ?>;
+
+        fetch('post_view.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `favorite_post=true&post_id=${postId}`
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert('Added to favorites!');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     });
+
 
     // Add to Cart Button
     document.querySelector('.add-to-cart-button').addEventListener('click', function () {

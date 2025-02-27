@@ -49,6 +49,19 @@ while ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 
+
+// Handle favorite user
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['favorite_user'])) {
+    $user_id = $_SESSION['user_id'];
+    $favorite_user_id = $_POST['favorite_user_id'];
+
+    $sql = "INSERT INTO favorite_users (user_id, favorite_user_id) VALUES (?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $user_id, $favorite_user_id);
+    $stmt->execute();
+    $stmt->close();
+}
+
 $conn->close();
 ?>
 
@@ -138,5 +151,29 @@ $conn->close();
     <footer>
         <p>&copy; 2023 CATAMOG. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Favorite Button
+    document.querySelector('.favorite-button').addEventListener('click', function() {
+        const favoriteUserId = <?php echo $user['id']; ?>;
+
+        fetch('user_account_view.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `favorite_user=true&favorite_user_id=${favoriteUserId}`
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert('Added to favorites!');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+    </script>
+
+
 </body>
 </html>

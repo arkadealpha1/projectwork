@@ -275,7 +275,7 @@ $conn->close();
                 key: 'YOUR_RAZORPAY_KEY', // Replace with your Razorpay key
                 amount: totalAmount, // Amount in paise
                 currency: 'INR',
-                name: 'Your Store Name',
+                name: 'CATAMOG',
                 description: 'Payment for Order',
                 image: 'https://../images/logo.png', // Replace with your store logo
                 handler: function (response) {
