@@ -14,29 +14,26 @@ if ($conn->connect_error) {
 }
 
 // Get the logged-in user's ID
-$user_id = $_SESSION['user_id'] ?? null;
+$user_id = $_SESSION['user_id'];
 
-if (!$user_id) {
-    die("User not logged in.");
-}
-
-// Fetch connected users
+// Fetch users the logged-in user has chatted with
 $sql = "SELECT u.id, u.username 
-        FROM connections c 
+        FROM chat_connections c 
         JOIN users u ON (c.user1_id = u.id OR c.user2_id = u.id) 
-        WHERE (c.user1_id = ? OR c.user2_id = ?) AND u.id != ?";
-$stmt = $conn->prepare($sql);
+        WHERE (c.user1_id = ? OR c.user2_id = ?) AND u.id != ? 
+        ORDER BY c.last_message_at DESC";
+$stmt = $conn->prepare(query: $sql);
 $stmt->bind_param("iii", $user_id, $user_id, $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-$connections = [];
+$users = [];
 while ($row = $result->fetch_assoc()) {
-    $connections[] = $row;
+    $users[] = $row;
 }
-
-echo json_encode(["status" => "success", "connections" => $connections]);
 
 $stmt->close();
 $conn->close();
+
+echo json_encode($users);
 ?>

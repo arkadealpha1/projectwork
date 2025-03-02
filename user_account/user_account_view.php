@@ -88,7 +88,9 @@ $conn->close();
         </div>
         <div class="nav-buttons">
             <button class="nav-button" id="chat-button">
+                <a href="../chat_connect/chat.php">
                 <i class="fas fa-comment-dots"></i>
+                </a>
             </button>
             <button class="nav-button" id="create-post-button">
                 <a href="../user_post/user_post.php">
@@ -103,7 +105,9 @@ $conn->close();
                 </a>
             </button>
             <button class="nav-button" id="cart-button">
+                <a href="../cart_stuff/cart.php">
                 <i class="fas fa-shopping-cart"></i>
+                </a>
             </button>
         </div>
     </nav>
@@ -121,8 +125,8 @@ $conn->close();
 
     <!-- User Actions -->
     <div class="user-actions">
-        <button class="favorite-button">★ Favorite</button>
-        <button class="connect-button" onclick="window.location.href='chat.php?user2_id=<?php echo $user['id']; ?>'">
+        <!-- <button class="favorite-button">★ Favorite</button> -->
+        <button class="connect-button" onclick="window.location.href='../chat_connect/chat.php?user2_id=<?php echo $user['id']; ?>'">
             Connect
         </button>
     </div>
@@ -154,24 +158,29 @@ $conn->close();
 
     <script>
         // Favorite Button
-    document.querySelector('.favorite-button').addEventListener('click', function() {
-        const favoriteUserId = <?php echo $user['id']; ?>;
+    // document.querySelector('.favorite-button').addEventListener('click', function() {
+    //     const favoriteUserId = <?php echo $user['id']; ?>;
 
-        fetch('user_account_view.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: `favorite_user=true&favorite_user_id=${favoriteUserId}`
-        })
-        .then(response => response.text())
-        .then(data => {
-            alert('Added to favorites!');
-        })
-        .catch(error => {
-            console.error('Error:', error);
+    //     fetch('user_account_view.php', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/x-www-form-urlencoded',
+    //         },
+    //         body: `favorite_user=true&favorite_user_id=${favoriteUserId}`
+    //     })
+    //     .then(response => response.text())
+    //     .then(data => {
+    //         alert('Added to favorites!');
+    //     })
+    //     .catch(error => {
+    //         console.error('Error:', error);
+    //     });
+    // });
+        //Connect Button
+        document.querySelector('.connect-button').addEventListener('click', function() {
+            alert('Connect request sent!');
+            // Add your connect logic here
         });
-    });
     </script>
 
 

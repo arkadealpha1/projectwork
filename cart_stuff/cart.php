@@ -77,7 +77,9 @@ $conn->close();
         </div>
         <div class="nav-buttons">
             <button class="nav-button" id="chat-button">
+                <a href="../chat_connect/chat.php">
                 <i class="fas fa-comment-dots"></i>
+                </a>
             </button>
             <button class="nav-button" id="create-post-button">
                 <a href="../user_post/user_post.php">
@@ -86,11 +88,13 @@ $conn->close();
             <button class="nav-button" id="user-page-button">
                 <a href="../account_view/account_view.php">
                 <!-- <i class="fas fa-user"></i> -->
-                <img class="profile-img" src="<?php if(!empty($user['Profile_photo'])){ echo $user['Profile_photo'];}else{ echo '../images/default_profile_pic.jpg';} ?>" alt="profile photo" >
+                <img class="profile-img" src="<?php echo !empty($_SESSION['profile_photo']) ? $_SESSION['profile_photo'] : '../images/default_profile_pic.jpg'; ?>" alt="profile photo">
                 </a>
             </button>
             <button class="nav-button" id="cart-button">
+                <a href="#">
                 <i class="fas fa-shopping-cart"></i>
+                </a>
             </button>
         </div>
     </nav>
@@ -112,11 +116,6 @@ $conn->close();
                             <div class="item-details">
                                 <h3 class="item-name"><?php echo htmlspecialchars($item['product_name']); ?></h3>
                                 <p class="item-price">₹<?php echo htmlspecialchars($item['price']); ?></p>
-                                <!-- <div class="item-quantity">
-                                    <button class="quantity-btn" onclick="updateQuantity(<?php echo $item['cart_item_id']; ?>, -1)">-</button>
-                                    <input type="number" class="quantity-input" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1">
-                                    <button class="quantity-btn" onclick="updateQuantity(<?php echo $item['cart_item_id']; ?>, 1)">+</button>
-                                </div> -->
                                 <button class="remove-btn" onclick="removeItem(<?php echo $item['cart_item_id']; ?>)">Remove</button>
                             </div>
                         </div>

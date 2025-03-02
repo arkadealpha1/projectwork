@@ -23,20 +23,6 @@ if (!$user2_id) {
     die("User ID is missing.");
 }
 
-// Fetch user2's details (profile photo and username)
-$sql = "SELECT username, Profile_photo FROM users WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user2_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows === 0) {
-    die("User not found.");
-}
-
-$user2 = $result->fetch_assoc();
-$stmt->close();
-
 // Fetch messages between the two users
 $sql = "SELECT * FROM chat_messages 
         WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) 
@@ -60,27 +46,15 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with <?php echo htmlspecialchars($user2['username']); ?></title>
+    <title>Chat</title>
     <link rel="stylesheet" href="../chat_connect/chat.css">
 </head>
 <body>
-    <!-- Navbar Header -->
-    <nav class="chat-navbar">
-        <div class="logo">
-            <a href="../homepage/homepage.php">
-                <img src="../images/logo.png" alt="CATAMOG Logo">
-            </a>
-        </div>
-        <div class="user-info">
-            <a href="../user_account/user_account_view.php?id=<?php echo $user2_id; ?>">
-                <img src="<?php echo !empty($user2['Profile_photo']) ? $user2['Profile_photo'] : '../images/default_profile_pic.jpg'; ?>" alt="Profile Photo" class="profile-photo">
-                <span class="username"><?php echo htmlspecialchars($user2['username']); ?></span>
-            </a>
-        </div>
-    </nav>
 
-    <!-- Chat Container -->
     <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chat with <?php echo htmlspecialchars($user2_id); ?></h2>
+        </div>
         <div class="chat-messages">
             <?php foreach ($messages as $message): ?>
                 <div class="message <?php echo $message['sender_id'] == $user1_id ? 'sent' : 'received'; ?>">

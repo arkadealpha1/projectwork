@@ -84,6 +84,39 @@ body {
     border-radius: 4px;
     transition: background-color 0.3s;
 }
+
+#chat-dropdown {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 60px; /* Position below the chat button */
+    right: 20px; /* Align to the right */
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto; /* Enable scrolling if the list is long */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+#inbox-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#inbox-list li {
+    color: black;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer; /* Indicate that the list item is clickable */
+}
+
+#inbox-list li:hover {
+    background-color: #f9f9f9; /* Highlight on hover */
+}
+
+
 .profile-img{
     width: 35px;
     border-radius: 20px;

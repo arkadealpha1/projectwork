@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Database connection
 $host = 'localhost';
 $db = 'projectwork';
@@ -18,8 +19,15 @@ if (!$post_id) {
     die("Post ID is missing.");
 }
 
+// Get the user ID from the session
+// $user_id = $_SESSION['user_id'] ?? null;
+
+// if (!$user_id) {
+//     die("User not logged in.");
+// }
+
 // Fetch post details from the database
-$sql = "SELECT post.*, product.product_name, product.review_blog, product.price, users.username 
+$sql = "SELECT post.*, product.product_name, product.review_blog, product.price, users.username, users.Profile_photo
         FROM post 
         JOIN product ON post.product_id = product.product_id 
         JOIN users ON post.id = users.id 
@@ -38,13 +46,17 @@ $stmt->close();
 
 // Handle favorite post
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['favorite_post'])) {
-    $user_id = $_SESSION['user_id'];
+    $user_id = $_SESSION['id'];
     $post_id = $_POST['post_id'];
 
-    $sql = "INSERT INTO favorite_posts (user_id, post_id) VALUES (?, ?)";
+    $sql = "INSERT INTO favorite_posts (id, post_id) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ii", $user_id, $post_id);
     $stmt->execute();
+
+    // Debugging: Print success message
+    echo "Favorite post added successfully! User ID: $user_id, Post ID: $post_id";
+
     $stmt->close();
 }
 
@@ -75,7 +87,9 @@ $conn->close();
         </div>
         <div class="nav-buttons">
             <button class="nav-button" id="chat-button">
+                <a href="../chat_connect/chat.php">
                 <i class="fas fa-comment-dots"></i>
+                </a>
             </button>
             <button class="nav-button" id="create-post-button">
                 <a href="../user_post/user_post.php">
@@ -111,7 +125,7 @@ $conn->close();
 
             <!-- Buttons -->
             <div class="post-buttons">
-            <button class="connect-button" onclick="window.location.href='chat.php?user2_id=<?php echo $post['id']; ?>'">
+            <button class="connect-button" onclick="window.location.href='../chat_connect/chat.php?user2_id=<?php echo $post['id']; ?>'">
                 Connect
             </button>
             <button class="add-to-cart-button" 
@@ -126,7 +140,7 @@ $conn->close();
             <!-- Display the user who uploaded the post -->
              <div class="uploaded-by">
                 <a href="../user_account/user_account_view.php?id=<?php echo $post['id']; ?>">
-                <img src="<?php if(!empty($user['Profile_photo'])){ echo $user['Profile_photo'];}else{ echo '../images/default_profile_pic.jpg';} ?>" alt="profile photo" style="width: 30px; border-radius: 20px ">
+                <img src="<?php echo !empty($post['Profile_photo']) ? $post['Profile_photo'] : '../images/default_profile_pic.jpg'; ?>" alt="profile photo" style="width: 30px; border-radius: 20px ">
                     <span class="username"><?php echo htmlspecialchars($post['username']); ?></span>
                 </a>
             </div>
@@ -154,7 +168,7 @@ $conn->close();
         fetch('post_view.php', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/json',
             },
             body: `favorite_post=true&post_id=${postId}`
         })

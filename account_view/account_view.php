@@ -75,7 +75,9 @@ $conn->close();
         </div>
         <div class="nav-buttons">
             <button class="nav-button" id="chat-button">
+                <a href="../chat/chat.php">
                 <i class="fas fa-comment-dots"></i>
+                </a>
             </button>
             <button class="nav-button" id="create-post-button">
                 <a href="../user_post/user_post.php">
@@ -88,7 +90,9 @@ $conn->close();
                 </a>
             </button>
             <button class="nav-button" id="cart-button">
+                <a href="../cart/cart.php">
                 <i class="fas fa-shopping-cart"></i>
+                </a>
             </button>
         </div>
     </nav>
@@ -119,6 +123,17 @@ $conn->close();
                     font-size: 16px;
                     transition: background-color 0.3s ease;">
                 Edit User
+            </button>
+            <button class="Favourites"
+                onclick="window.location.href='favourite.php'"
+                style=" background-color: yellow;
+                        color: black;
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        transition: background-color 0.3s ease;">
             </button>
         </div>
     <!-- User Actions -->

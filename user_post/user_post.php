@@ -95,7 +95,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="nav-buttons">
             <button class="nav-button" id="chat-button">
+                <a href="../chat_connect/chat.php">
                 <i class="fas fa-comment-dots"></i>
+                </a>
             </button>
             <button class="nav-button" id="create-post-button">
                 <a href="../user_post/user_post.html">
@@ -103,11 +105,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </button>
             <button class="nav-button" id="user-page-button">
                 <a href="../account_view/account_view.php">
-                <img class="profile-img" src="<?php if(!empty($user['Profile_photo'])){ echo $user['Profile_photo'];}else{ echo '../images/default_profile_pic.jpg';} ?>" alt="profile photo" >
+                <img class="profile-img" src="<?php echo !empty($_SESSION['profile_photo']) ? $_SESSION['profile_photo'] : '../images/default_profile_pic.jpg'; ?>" alt="profile photo">
                 </a>
             </button>
             <button class="nav-button" id="cart-button">
+                <a href="../cart_stuff/cart.php">
                 <i class="fas fa-shopping-cart"></i>
+                </a>
             </button>
         </div>
     </nav>

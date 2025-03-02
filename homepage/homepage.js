@@ -66,11 +66,12 @@
                     const productNameLink = document.createElement('a');
                     productNameLink.href = `../post_view/post_view.php?id=${post.post_id}`; // Link to the post view page
                     productNameLink.className = 'product-name-link';
+                    productNameLink.textContent = post.title;
 
                     
-                    const productName = document.createElement('h3');
-                    productName.className = 'product-name';
-                    productName.textContent = post.title;
+                    // const productName = document.createElement('h3');
+                    // productName.className = 'product-name';
+                    // productName.textContent = post.title;
         
                     const rating = document.createElement('div');
                     rating.className = 'rating';
@@ -81,7 +82,7 @@
                     postDetails.innerHTML = `<p>Posted by: ${post.username}</p><p>Price: ₹${post.price}</p>`;
         
                     // overlay.appendChild(productName);
-                    overlay.appendChild(productName, productNameLink);
+                    overlay.appendChild(productNameLink);
                     overlay.appendChild(rating);
                     overlay.appendChild(postDetails);
                     photoContainer.appendChild(img);

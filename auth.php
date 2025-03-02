@@ -50,6 +50,7 @@ if(isset($_POST['logform'])){
         session_start();
         $row=$result->fetch_assoc();
         $_SESSION['user_id']=$row['id'];
+        $_SESSION['profile_photo']=$row['Profile_photo'];
         header("Location: homepage/homepage.php");
         exit();
 

@@ -154,7 +154,6 @@ $conn->close();
         </form>
     </div>
 
-
     <div class="payment-modes" id='payment-block' style="display: none;">
         <div class="form-right">
             <h2>Payment Mode</h2>
