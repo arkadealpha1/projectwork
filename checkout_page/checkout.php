@@ -117,22 +117,12 @@ $conn->close();
                 <div class="form-group">
                     <label for="city">City</label>
                     <input type="text" id="city" name="city" placeholder="Your city" required>
-                        <!-- <option value="">Select City</option>
-                        <option value="mumbai">Mumbai</option>
-                        <option value="delhi">Delhi</option>
-                        <option value="bangalore">Bangalore</option>
-                        <option value="kolkata">Kolkata</option> -->
                 </div>
 
                 <!-- State Dropdown -->
                 <div class="form-group">
                     <label for="state">State</label>
                     <input type="text" id="state" name="state" placeholder="Your state" required>
-                        <!-- <option value="">Select State</option>
-                        <option value="maharashtra">Maharashtra</option>
-                        <option value="delhi">Delhi</option>
-                        <option value="karnataka">Karnataka</option>
-                        <option value="west-bengal">West Bengal</option> -->
                 </div>
 
                 <!-- Zip Code -->
