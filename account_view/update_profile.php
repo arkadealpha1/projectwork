@@ -58,14 +58,14 @@ $date_of_birth = $_POST['date_of_birth'];
 $phone = $_POST['phone'];
 
 // Validate phone number (ensure it's a valid integer)
-if (!ctype_digit($phone)) {
-    die("Invalid phone number. Please enter only digits.");
-}
+// if (!ctype_digit($phone)) {
+//     die("Invalid phone number. Please enter only digits.");
+// }
 
 // Update user details in the database
-$sql = "UPDATE users SET username = ?, name = ?, date_of_birth = ?, phone = ?, Profile_photo = ? WHERE id = ?";
+$sql = "UPDATE users SET username = ?, name = ?, date_of_birth = ?, Profile_photo = ? WHERE id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssi", $username, $name, $date_of_birth, $phone, $profile_photo, $user_id);
+$stmt->bind_param("ssssi", $username, $name, $date_of_birth, $profile_photo, $user_id);
 
 if ($stmt->execute()) {
     echo "Profile updated successfully!";

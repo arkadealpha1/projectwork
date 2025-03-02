@@ -113,6 +113,8 @@
 }
 .container{
     display: flex;
+    margin: 10px;
+    justify-content: center;
 }
 .checkout-form{
     flex-basis: 60%;

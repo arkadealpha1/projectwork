@@ -106,10 +106,10 @@ $conn->close();
             </div>
 
             <!-- Phone Number -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="phone">Phone Number</label>
                 <input type="int" id="phone" name="phone" value="<?php echo htmlspecialchars($user['phone'] ?? ''); ?>">
-            </div>
+            </div> -->
 
             <!-- Save Button -->
             <button type="submit" class="save-btn">Save Changes</button>
