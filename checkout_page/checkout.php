@@ -344,7 +344,7 @@ $conn->close();
             .then(response => response.json())
             .then(result => {
                 if (result.status === 'success') {
-                    alert('Delivery details saved successfully!');
+                    // alert('Delivery details saved successfully!');
                     // Redirect to the payment page or proceed to payment
                     // window.location.href = 'payment.php';
                     const payment=document.getElementById('payment-block');

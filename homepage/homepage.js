@@ -33,8 +33,8 @@
                         .then(data => {
                             if (data.status === 'success') {
                                 displayPosts(data.posts);
-                            } else {
-                                alert('No posts found.');
+                            // } else {
+                                // alert('No posts found.');
                             }
                         })
                         .catch(error => {

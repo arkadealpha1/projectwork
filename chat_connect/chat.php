@@ -62,6 +62,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with <?php echo htmlspecialchars($user2['username']); ?></title>
     <link rel="stylesheet" href="../chat_connect/chat.css">
+    <link rel="stylesheet" href="../homepage/background.css">
 </head>
 <body>
     <!-- Navbar Header -->

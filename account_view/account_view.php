@@ -60,6 +60,7 @@ $conn->close();
     <title>CATAMOG - <?php echo htmlspecialchars($user['username']); ?></title>
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../account_view/account_view.css">
+    
     <!-- Add FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -124,23 +125,7 @@ $conn->close();
                     transition: background-color 0.3s ease;">
                 Edit User
             </button>
-            <button class="Favourites"
-                onclick="window.location.href='favourite.php'"
-                style=" background-color: yellow;
-                        color: black;
-                        padding: 10px 20px;
-                        border: none;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        font-size: 16px;
-                        transition: background-color 0.3s ease;">
-            </button>
         </div>
-    <!-- User Actions -->
-    <!-- <div class="user-actions">
-        <button class="favorite-button">★ Favorite</button>
-        <button class="connect-button">Connect</button>
-    </div> -->
 
     <!-- User Posts Gallery -->
     <div class="user-posts">

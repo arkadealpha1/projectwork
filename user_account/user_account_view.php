@@ -97,10 +97,7 @@ $conn->close();
                 <i class="fas fa-plus"></i></a>
             </button>
             <button class="nav-button" id="user-page-button">
-                <a href="#">
-                <!-- <a href="../user_account/user_account.html"> -->
-                
-                <!-- Fetch logged-in user's profile photo from session -->
+                <a href="../account_view/account_view.php">
                 <img class="profile-img" src="<?php echo !empty($_SESSION['profile_photo']) ? $_SESSION['profile_photo'] : '../images/default_profile_pic.jpg'; ?>" alt="profile photo">
                 </a>
             </button>
@@ -125,7 +122,6 @@ $conn->close();
 
     <!-- User Actions -->
     <div class="user-actions">
-        <!-- <button class="favorite-button">★ Favorite</button> -->
         <button class="connect-button" onclick="window.location.href='../chat_connect/chat.php?user2_id=<?php echo $user['id']; ?>'">
             Connect
         </button>
@@ -157,29 +153,8 @@ $conn->close();
     </footer>
 
     <script>
-        // Favorite Button
-    // document.querySelector('.favorite-button').addEventListener('click', function() {
-    //     const favoriteUserId = <?php echo $user['id']; ?>;
-
-    //     fetch('user_account_view.php', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/x-www-form-urlencoded',
-    //         },
-    //         body: `favorite_user=true&favorite_user_id=${favoriteUserId}`
-    //     })
-    //     .then(response => response.text())
-    //     .then(data => {
-    //         alert('Added to favorites!');
-    //     })
-    //     .catch(error => {
-    //         console.error('Error:', error);
-    //     });
-    // });
         //Connect Button
         document.querySelector('.connect-button').addEventListener('click', function() {
-            alert('Connect request sent!');
-            // Add your connect logic here
         });
     </script>
 

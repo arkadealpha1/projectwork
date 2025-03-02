@@ -19,14 +19,7 @@ if (!$post_id) {
     die("Post ID is missing.");
 }
 
-// Get the user ID from the session
-// $user_id = $_SESSION['user_id'] ?? null;
-
-// if (!$user_id) {
-//     die("User not logged in.");
-// }
-
-// Fetch post details from the database
+// Fetch the post details from the database
 $sql = "SELECT post.*, product.product_name, product.review_blog, product.price, users.username, users.Profile_photo
         FROM post 
         JOIN product ON post.product_id = product.product_id 
@@ -43,23 +36,6 @@ if ($result->num_rows === 0) {
 
 $post = $result->fetch_assoc();
 $stmt->close();
-
-// Handle favorite post
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['favorite_post'])) {
-    $user_id = $_SESSION['id'];
-    $post_id = $_POST['post_id'];
-
-    $sql = "INSERT INTO favorite_posts (id, post_id) VALUES (?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $user_id, $post_id);
-    $stmt->execute();
-
-    // Debugging: Print success message
-    echo "Favorite post added successfully! User ID: $user_id, Post ID: $post_id";
-
-    $stmt->close();
-}
-
 $conn->close();
 ?>
 
@@ -72,6 +48,7 @@ $conn->close();
     <title>CATAMOG - <?php echo htmlspecialchars($post['title']); ?></title>
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../post_view/post_view.css">
+   
     <!-- Add FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -134,7 +111,6 @@ $conn->close();
             data-price="<?php echo htmlspecialchars($post['price']); ?>">
                 Add to Cart
             </button>
-            <button class="favorite-button">★ Favorite</button>
             </div>
 
             <!-- Display the user who uploaded the post -->
@@ -155,30 +131,8 @@ $conn->close();
     <script>
     // Connect Button
     document.querySelector('.connect-button').addEventListener('click', function() {
-        alert('Connect request sent!');
+        // alert('Connect request sent!');
         // Add your connect logic here
-    });
-
-    // Favorite Button
-    document.querySelector('.favorite-button').addEventListener('click', function() {
-        alert('Added to favorites!');
-        // Add your favorite logic here
-        const postId = <?php echo $post['post_id']; ?>;
-
-        fetch('post_view.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: `favorite_post=true&post_id=${postId}`
-        })
-        .then(response => response.text())
-        .then(data => {
-            alert('Added to favorites!');
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
     });
 
 
