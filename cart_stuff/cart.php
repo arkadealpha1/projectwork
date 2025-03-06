@@ -28,11 +28,23 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    $cart_items = []; // No active cart
+    // Create a new cart if none exists
+    $stmt = $conn->prepare("INSERT INTO cart (id, status) VALUES (?, 'active')");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $cart_id = $stmt->insert_id; // Get the auto-generated cart_id
+    $_SESSION['cart_id'] = $cart_id; // Store cart_id in session
 } else {
+    // Use the existing cart
     $cart = $result->fetch_assoc();
     $cart_id = $cart['cart_id'];
-    $_SESSION['cart_id ']= $cart['cart_id'];
+    $_SESSION['cart_id'] = $cart_id; // Store cart_id in session
+}
+//     $cart_items = []; // No active cart
+// } else {
+//     $cart = $result->fetch_assoc();
+//     $cart_id = $cart['cart_id'];
+//     $_SESSION['cart_id']= $cart['cart_id'];
 
     // Fetch the cart items
     $sql = "SELECT cart_items.*, product.product_name, product.media, product.price 
@@ -48,7 +60,7 @@ if ($result->num_rows === 0) {
     while ($row = $result->fetch_assoc()) {
         $cart_items[] = $row;
     }
-}
+
 
 $stmt->close();
 $conn->close();
@@ -66,6 +78,9 @@ $conn->close();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+
+<script src="../navbar.js"></script>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
@@ -76,11 +91,14 @@ $conn->close();
             <button><i class="fas fa-search"></i></button>
         </div>
         <div class="nav-buttons">
-            <button class="nav-button" id="chat-button">
-                <a href="../chat_connect/chat.php">
+        <button class="nav-button" id="chat-button" onclick="openDropdown()">
                 <i class="fas fa-comment-dots"></i>
-                </a>
             </button>
+
+            <!--Chat dropdown-->
+            <div id="chat-dropdown">
+                    <ul id="inbox-list"></ul>
+            </div>
             <button class="nav-button" id="create-post-button">
                 <a href="../user_post/user_post.php">
                 <i class="fas fa-plus"></i></a>

@@ -6,7 +6,6 @@
     <title>CATAMOG - Login/Register</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="homepage/background.css">
-    
 </head>
 <body>
     <div class="container">
@@ -42,19 +41,19 @@
                     <label for="register-email">Email</label>
                     <input type="email" id="email" name="email" required>
                 </div>
+                <!-- Uncomment if you want to include the phone field -->
                 <!-- <div class="input-group">
                     <label for="register-email">Phone</label>
                     <input type="text" id="phone" name="phone" required>
                 </div> -->
                 <div class="input-group">
                     <label for="register-email">Date of Birth</label>
-                    <input type="text" id="dob" name="dob" required>
+                    <input type="date" id="dob" name="dob" required> <!-- Changed to type="date" -->
                 </div>
                 <div class="input-group">
                     <label for="register-password">Password</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-            
                 <button type="submit" name="regform">Register</button>
             </form>
             <p>Already have an account? <a href="#" id="show-login">Login here</a></p>
@@ -74,6 +73,15 @@
             document.getElementById('regform').style.display = 'none';
             document.getElementById('logform').style.display = 'block';
         });
+
+        // Display login error alert if there is an error
+        <?php
+        session_start(); // Start the session
+        if(isset($_SESSION['login_error'])) {
+            echo "alert('" . $_SESSION['login_error'] . "');";
+            unset($_SESSION['login_error']); // Clear the error message after displaying it
+        }
+        ?>
     </script>
 </body>
 </html>

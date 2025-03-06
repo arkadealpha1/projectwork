@@ -65,6 +65,9 @@ $conn->close();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+
+<script src="../navbar.js"></script>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
@@ -75,11 +78,14 @@ $conn->close();
             <button><i class="fas fa-search"></i></button>
         </div>
         <div class="nav-buttons">
-            <button class="nav-button" id="chat-button">
-                <a href="../chat/chat.php">
+        <button class="nav-button" id="chat-button" onclick="openDropdown()">
                 <i class="fas fa-comment-dots"></i>
-                </a>
             </button>
+
+            <!--Chat dropdown-->
+            <div id="chat-dropdown">
+                    <ul id="inbox-list"></ul>
+            </div>
             <button class="nav-button" id="create-post-button">
                 <a href="../user_post/user_post.php">
                 <i class="fas fa-plus"></i></a>
@@ -91,7 +97,7 @@ $conn->close();
                 </a>
             </button>
             <button class="nav-button" id="cart-button">
-                <a href="../cart/cart.php">
+                <a href="../cart_stuff/cart.php">
                 <i class="fas fa-shopping-cart"></i>
                 </a>
             </button>
@@ -124,6 +130,18 @@ $conn->close();
                     font-size: 16px;
                     transition: background-color 0.3s ease;">
                 Edit User
+            </button>
+            <button class="logout-button" 
+                onclick="window.location.href='../account_view/logout.php'" 
+                style=" background-color: red;
+                        color: black;
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        transition: background-color 0.3s ease;">
+                Logout
             </button>
         </div>
 
