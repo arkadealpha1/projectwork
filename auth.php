@@ -9,8 +9,7 @@ session_start(); // Start the session at the beginning
 if(isset($_POST['regform'])){
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $dob = $_POST['dob'];
+    $dob = $_POST['date_of_birth'];
     $password = $_POST['password'];
     $password = md5($password);
 
@@ -25,8 +24,8 @@ if(isset($_POST['regform'])){
     if($result->num_rows > 0){
         echo "Username already exists!";
     } else {
-        $insertQuery = "INSERT INTO users(username, email, password, phone, dob) 
-                        VALUES ('$username', '$email', '$password', '$phone', '$dob')";
+        $insertQuery = "INSERT INTO users(username, email, password, date_of_birth) 
+                        VALUES ('$username', '$email', '$password', '$date_of_birth')";
         if($conn->query($insertQuery) == TRUE){
             header("location: index.php"); 
         } else {

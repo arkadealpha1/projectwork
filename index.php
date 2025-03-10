@@ -25,7 +25,7 @@
                 <button type="submit" name="logform">Login</button>
             </form>
             <p>Don't have an account? <a href="#" id="show-register">Register here</a></p>
-            <p>Forgot your password? <a href="forgot_password.php">Reset here</a></p>
+            
         </div>
 
         <!-- Register Form -->
